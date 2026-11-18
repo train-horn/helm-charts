@@ -1,0 +1,41 @@
+apiVersion: v1
+entries:
+  train-horn-calculator:
+  - annotations:
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Train Horn calculators
+          url: https://train-horn.com/tools/
+        - name: Decibel distance calculator (original)
+          url: https://train-horn.com/tools/decibel-distance/
+        - name: Chart source
+          url: https://github.com/train-horn/helm-charts
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-11-18T15:27:37.763128-08:00"
+    description: Self-hosted train horn loudness-at-distance (dB) calculator served
+      by unprivileged nginx from a ConfigMap.
+    digest: c0fd45b78dc919a475430d2e91f825173fcd453f28797c8d8a63ec429a6fba45
+    home: https://train-horn.com/tools/
+    icon: https://train-horn.com/android-chrome-512x512.png
+    keywords:
+    - train-horn
+    - decibel
+    - acoustics
+    - calculator
+    - inverse-square-law
+    - nginx
+    - static-site
+    maintainers:
+    - name: Train Horn
+      url: https://train-horn.com/
+    name: train-horn-calculator
+    sources:
+    - https://github.com/train-horn/helm-charts
+    type: application
+    urls:
+    - https://train-horn.github.io/helm-charts/train-horn-calculator-1.0.0.tgz
+    version: 1.0.0
+generated: "2026-11-18T15:27:37.762504-08:00"

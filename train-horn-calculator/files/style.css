@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --accent: #b8411c;
+  --accent-soft: #fbeee8;
+  --text: #1a1a1a;
+  --muted: #555;
+  --line: #e5e1d8;
+  --bg: #fbf7ef;
+  --card: #fff;
+  --warn: #8a5a00;
+  --error: #a3200f;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 40px; }
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 { margin: 4px 0 8px; font-size: clamp(1.5rem, 4vw, 2.1rem); letter-spacing: -0.02em; }
+h2 { margin: 0 0 12px; font-size: 1.05rem; }
+.lede { margin: 0 0 20px; color: var(--muted); max-width: 60ch; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+fieldset.units { border: 0; padding: 0; margin: 0 0 14px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+fieldset.units legend { float: left; margin-right: 8px; font-weight: 600; font-size: 0.9rem; }
+
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+
+.input-unit { display: flex; align-items: stretch; }
+.input-unit span {
+  display: flex; align-items: center; padding: 0 10px;
+  border: 1px solid var(--line); border-left: 0; border-radius: 0 8px 8px 0;
+  background: var(--bg); color: var(--muted); font-size: 0.9rem;
+}
+.input-unit input { border-radius: 8px 0 0 8px; }
+
+input[type="number"], select {
+  width: 100%; min-height: 44px; padding: 8px 10px;
+  font: inherit; color: inherit; background: #fff;
+  border: 1px solid #c9c3b8; border-radius: 8px;
+}
+input:focus-visible, select:focus-visible, input[type="radio"]:focus-visible, input[type="checkbox"]:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px;
+}
+input[type="radio"], input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px; vertical-align: -3px; }
+
+.check { display: block; margin-top: 14px; font-size: 0.92rem; }
+.note { margin: 12px 0 0; padding: 10px 12px; background: var(--accent-soft); border-left: 3px solid var(--accent); font-size: 0.9rem; }
+.error { margin: 12px 0 0; color: var(--error); font-weight: 600; }
+
+.result { border-top: 4px solid var(--accent); }
+.big { margin: 0; font-size: clamp(2.4rem, 9vw, 3.6rem); font-weight: 700; color: var(--accent); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.big .unit { font-size: 0.45em; color: var(--muted); font-weight: 600; }
+.result p { margin: 6px 0 0; }
+.warnings { margin: 8px 0 0; padding-left: 18px; color: var(--warn); font-size: 0.9rem; }
+
+.two { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.two .card { margin-bottom: 0; }
+
+.scale { list-style: none; margin: 0; padding: 0; }
+.scale li { display: flex; gap: 10px; padding: 6px 8px; border-radius: 6px; font-size: 0.9rem; }
+.scale-db { flex: 0 0 4.2em; font-weight: 600; font-variant-numeric: tabular-nums; }
+.scale li.here { background: var(--accent); color: #fff; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+
+.muted { color: var(--muted); }
+.small { font-size: 0.82rem; }
+footer { margin-top: 20px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scale li { transition: background-color 0.2s, color 0.2s; }
+}

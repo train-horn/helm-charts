@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Train horn loudness at distance: dB calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">Acoustics calculator</p>
+    <h1>Train horn loudness at distance</h1>
+    <p class="lede">Estimate how loud a horn is at the listener from its rated level at a reference distance, using the inverse-square law (−6.02&nbsp;dB per doubling of distance).</p>
+  </header>
+
+  <form id="calc" class="card" novalidate aria-describedby="error">
+    <fieldset class="units">
+      <legend>Distance units</legend>
+      <label><input type="radio" name="unit" value="ft" checked> feet</label>
+      <label><input type="radio" name="unit" value="m"> metres</label>
+    </fieldset>
+
+    <div class="grid">
+      <div class="field">
+        <label for="source-db">Source level</label>
+        <div class="input-unit">
+          <input id="source-db" name="source" type="number" inputmode="decimal" min="0" max="200" step="0.1" value="150" required>
+          <span aria-hidden="true">dB</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="ref-distance">Measured at (reference distance)</label>
+        <div class="input-unit">
+          <input id="ref-distance" name="ref" type="number" inputmode="decimal" min="0" step="any" value="10" required>
+          <span id="ref-unit" aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="listener-distance">Listener distance</label>
+        <div class="input-unit">
+          <input id="listener-distance" name="dist" type="number" inputmode="decimal" min="0" step="any" value="100" required>
+          <span id="dist-unit" aria-hidden="true">ft</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="source-label">Where the source number comes from</label>
+        <select id="source-label" name="label">
+          <option value="mfr">Manufacturer claim</option>
+          <option value="ind">Independent measurement</option>
+          <option value="stat">Statutory limit</option>
+        </select>
+      </div>
+    </div>
+
+    <label class="check">
+      <input id="absorption" name="absorption" type="checkbox">
+      Include approximate air absorption (≈5&nbsp;dB/km, about 1&nbsp;kHz at 20&nbsp;°C, 70&nbsp;% RH)
+    </label>
+
+    <p id="label-note" class="note"></p>
+    <p id="error" class="error" role="alert" hidden></p>
+  </form>
+
+  <section class="card result" aria-live="polite" aria-atomic="true">
+    <h2 class="sr-only">Result</h2>
+    <p class="big"><span id="result-db">—</span> <span class="unit">dB</span></p>
+    <p id="result-text"></p>
+    <p id="breakdown" class="muted"></p>
+    <ul id="warnings" class="warnings"></ul>
+  </section>
+
+  <div class="two">
+    <section class="card">
+      <h2>Comparison scale</h2>
+      <ol id="scale" class="scale"></ol>
+      <p class="muted small">Typical, approximate values. The highlighted row is the closest level at or below your result.</p>
+    </section>
+    <section class="card">
+      <h2>Same horn, other distances</h2>
+      <table>
+        <thead><tr><th scope="col">Distance</th><th scope="col">Level</th></tr></thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <footer class="muted small">
+    <p><strong>Formula:</strong> L₂ = L₁ − 20·log₁₀(r₂ / r₁) [− α·(r₂ − r₁)]. Free field, point source, no reflections, wind or barriers. The output keeps the weighting of the input (dBA stays dBA). Not a safety or legal determination.</p>
+  </footer>
+</main>
+<p class="muted small" style="text-align:center">Self-hosted copy of a calculator from <a href="https://train-horn.com/tools/">Train Horn tools</a>. MIT License.</p>
+<script src="script.js"></script>
+</body>
+</html>

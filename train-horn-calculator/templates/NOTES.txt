@@ -1,0 +1,15 @@
+Train horn loudness-at-distance calculator is deployed as {{ include "thc.fullname" . }}.
+
+{{- if .Values.ingress.enabled }}
+Open:
+{{- range .Values.ingress.hosts }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .host }}/
+{{- end }}
+{{- else }}
+Open it locally:
+  kubectl --namespace {{ .Release.Namespace }} port-forward svc/{{ include "thc.fullname" . }} 8080:{{ .Values.service.port }}
+  then browse to http://127.0.0.1:8080/
+{{- end }}
+
+Health check: /healthz
+More train horn calculators: https://train-horn.com/tools/

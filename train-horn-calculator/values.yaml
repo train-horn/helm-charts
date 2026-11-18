@@ -1,0 +1,81 @@
+# Default values for train-horn-calculator.
+
+# -- Number of nginx pods.
+replicaCount: 1
+
+image:
+  # -- Container image. Must be an nginx build that can run as a non-root user.
+  repository: nginxinc/nginx-unprivileged
+  # -- Image tag.
+  tag: "1.27-alpine"
+  # -- Image pull policy.
+  pullPolicy: IfNotPresent
+
+# -- Image pull secrets, e.g. [{name: regcred}].
+imagePullSecrets: []
+# -- Override the chart name in resource names.
+nameOverride: ""
+# -- Override the full resource name.
+fullnameOverride: ""
+
+# -- Port nginx listens on inside the container (non-root, so above 1024).
+containerPort: 8080
+
+# -- Extra pod annotations.
+podAnnotations: {}
+# -- Extra pod labels.
+podLabels: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 101
+  runAsGroup: 101
+  fsGroup: 101
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+service:
+  # -- Service type.
+  type: ClusterIP
+  # -- Service port.
+  port: 80
+
+ingress:
+  # -- Create an Ingress.
+  enabled: false
+  # -- IngressClass name, e.g. nginx or traefik.
+  className: ""
+  # -- Ingress annotations.
+  annotations: {}
+  hosts:
+    - host: horn-calc.local
+      paths:
+        - path: /
+          pathType: Prefix
+  # -- TLS config, e.g. [{secretName: horn-calc-tls, hosts: [horn-calc.local]}].
+  tls: []
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 16Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+
+# -- Size limit of the writable /tmp emptyDir (nginx pid and temp files).
+tmpSizeLimit: 16Mi
+
+# -- Node selector.
+nodeSelector: {}
+# -- Tolerations.
+tolerations: []
+# -- Affinity rules.
+affinity: {}
